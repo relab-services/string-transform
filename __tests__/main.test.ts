@@ -3,47 +3,50 @@ import * as main from '../src/main'
 
 const runMock = jest.spyOn(main, 'run')
 
-let debugMock: jest.SpiedFunction<typeof core.debug>
 let errorMock: jest.SpiedFunction<typeof core.error>
 let getInputMock: jest.SpiedFunction<typeof core.getInput>
-let setFailedMock: jest.SpiedFunction<typeof core.setFailed>
 let setOutputMock: jest.SpiedFunction<typeof core.setOutput>
 
 describe('action', () => {
   beforeEach(() => {
     jest.clearAllMocks()
 
-    debugMock = jest.spyOn(core, 'debug').mockImplementation()
     errorMock = jest.spyOn(core, 'error').mockImplementation()
     getInputMock = jest.spyOn(core, 'getInput').mockImplementation()
-    setFailedMock = jest.spyOn(core, 'setFailed').mockImplementation()
     setOutputMock = jest.spyOn(core, 'setOutput').mockImplementation()
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('lower', async () => {
     await validate('TestProject', 'lower', 'testproject')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('upper', async () => {
     await validate('TestProject', 'upper', 'TESTPROJECT')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('camel', async () => {
     await validate('TestProject', 'camel', 'testProject')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('pascal', async () => {
     await validate('testProject', 'pascal', 'TestProject')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('snake', async () => {
     await validate('TestProject', 'snake', 'test_project')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('kebab', async () => {
     await validate('TestProject', 'kebab', 'test-project')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('combine', async () => {
     const transform = `
 kebab
@@ -53,10 +56,12 @@ replace('ST', 'XT')
     await validate('TestProject', transform, 'TEXT-PROJECT')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('replace string', async () => {
     await validate('TestProject', 'replace("Test", "X")', 'XProject')
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('replace regex', async () => {
     await validate('TestProject', 'replace(/[esc]/gi, "_")', 'T__tProj__t')
   })
@@ -65,7 +70,7 @@ replace('ST', 'XT')
     source: string,
     transform: string,
     result: string
-  ) => {
+  ): Promise<void> => {
     getInputMock.mockImplementation(name => {
       switch (name) {
         case 'source':
