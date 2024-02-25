@@ -1,6 +1,7 @@
-# String Transform Github Action
+# String Transform GitHub Action
 
-The function takes a string and applies one or more transformations to it.
+The function takes a string and applies one or more
+transformations to it.
 
 Available transformations:
 
@@ -20,7 +21,8 @@ Available transformations:
 
 ### `transform` (string)
 
-One or more transformations should be applied to the `source` string (default is `lower`).
+One or more transformations should be applied to the `source`
+string (default is `lower`).
 
 ## Outputs
 
@@ -46,7 +48,8 @@ steps:
 
 ## String replace
 
-The `replace` transformation supports both simple string replacement and regex.
+The `replace` transformation supports both simple string replacement
+and regular expression.
 
 Simple string replacement:
 
@@ -64,7 +67,7 @@ steps:
     run: echo "${{ steps.transform.outputs.var }}"
 ```
 
-Regex replacement:
+Regular expression replacement:
 
 ```yaml
 steps:
@@ -82,7 +85,8 @@ steps:
 
 ## Combine string transformations
 
-You can use multiple transformations simultaneously. The transformations will be applied sequentially in the order you specified.
+You can use multiple transformations simultaneously. The transformations
+will be applied sequentially in the order you specified.
 
 ```yaml
 steps:
