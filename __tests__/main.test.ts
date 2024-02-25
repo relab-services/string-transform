@@ -61,7 +61,11 @@ replace('ST', 'XT')
     await validate('TestProject', 'replace(/[esc]/gi, "_")', 'T__tProj__t')
   })
 
-  const validate = async (source: string, transform: string, result: string) => {
+  const validate = async (
+    source: string,
+    transform: string,
+    result: string
+  ) => {
     getInputMock.mockImplementation(name => {
       switch (name) {
         case 'source':
@@ -76,11 +80,7 @@ replace('ST', 'XT')
     await main.run()
     expect(runMock).toHaveReturned()
 
-    expect(setOutputMock).toHaveBeenNthCalledWith(
-      1,
-      'var',
-      result
-    )
+    expect(setOutputMock).toHaveBeenNthCalledWith(1, 'var', result)
     expect(errorMock).not.toHaveBeenCalled()
   }
 })

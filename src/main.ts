@@ -2,7 +2,6 @@ import * as core from '@actions/core'
 import * as os from 'os'
 import * as transformers from './transforms'
 
-
 export async function run(): Promise<void> {
   try {
     const source: string = core.getInput('source')
