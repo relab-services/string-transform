@@ -15,7 +15,7 @@
   "keywords": [
     "actions",
     "node",
-    "setup"
+    "string"
   ],
   "exports": {
     ".": "./dist/index.js"
