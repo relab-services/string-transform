@@ -1,26 +1,27 @@
 import * as core from '@actions/core'
-import { wait } from './wait'
+import * as os from 'os'
+import * as transformers from './transforms'
 
-/**
- * The main function for the action.
- * @returns {Promise<void>} Resolves when the action is complete.
- */
+
 export async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
+    const source: string = core.getInput('source')
+    const transforms: string = core.getInput('transform')
 
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
+    let result = source
 
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    for (const currentTransform of transforms.split(os.EOL)) {
+      for (const { verify, transform } of Object.values(transformers)) {
+        if (verify(currentTransform)) {
+          core.debug(`Transforming "${result}" to ${transform}...`)
+          result = transform(currentTransform, result)
+        }
+      }
+    }
 
-    // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    core.debug(`Result is "${result}"`)
+    core.setOutput('var', result)
   } catch (error) {
-    // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
   }
 }

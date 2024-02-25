@@ -1,23 +1,23 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'string-transform'
+description: 'GitHub action for manipulating strings'
+author: 'Sergey Zwezdin'
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: 'heart'
-  color: 'red'
+  icon: 'align-justify'
+  color: 'purple'
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  source:
+    description: 'Source string'
     required: true
-    default: '1000'
+  transform:
+    description: 'String transformations'
+    required: true
+    default: 'lower'
 
-# Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  var:
+    description: 'Transformed string'
 
 runs:
   using: node20
