@@ -20007,7 +20007,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Camel = void 0;
 const lodash_1 = __nccwpck_require__(250);
 exports.Camel = {
-    verify: (transform) => transform.trim().toLowerCase() === 'camel',
+    verify: transform => transform.trim().toLowerCase() === 'camel',
     transform: (transform, source) => (0, lodash_1.camelCase)(source)
 };
 
@@ -20055,7 +20055,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Kebab = void 0;
 const lodash_1 = __nccwpck_require__(250);
 exports.Kebab = {
-    verify: (transform) => transform.trim().toLowerCase() === 'kebab',
+    verify: transform => transform.trim().toLowerCase() === 'kebab',
     transform: (transform, source) => (0, lodash_1.kebabCase)(source)
 };
 
@@ -20070,7 +20070,7 @@ exports.Kebab = {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Lower = void 0;
 exports.Lower = {
-    verify: (transform) => transform.trim().toLowerCase() === 'lower',
+    verify: transform => transform.trim().toLowerCase() === 'lower',
     transform: (transform, source) => source.toLowerCase()
 };
 
@@ -20086,7 +20086,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Pascal = void 0;
 const lodash_1 = __nccwpck_require__(250);
 exports.Pascal = {
-    verify: (transform) => transform.trim().toLowerCase() === 'pascal',
+    verify: transform => transform.trim().toLowerCase() === 'pascal',
     transform: (transform, source) => (0, lodash_1.upperFirst)((0, lodash_1.camelCase)(source))
 };
 
@@ -20102,7 +20102,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Regex = void 0;
 const regex = () => /^\s*replace\s*\(\s*\/(?<from>.+?)\/(?<modifier>[a-z]*)\s*,\s*["'`](?<to>.+?)["'`]\)\s*$/gi;
 exports.Regex = {
-    verify: (transform) => regex().test(transform),
+    verify: transform => regex().test(transform),
     transform: (transform, source) => {
         const replace = regex().exec(transform);
         if (replace && replace.groups) {
@@ -20125,7 +20125,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Replace = void 0;
 const regex = () => /^\s*replace\s*\(\s*["'`](?<from>.+?)["'`]\s*,\s*["'`](?<to>.+?)["'`]\)\s*/gi;
 exports.Replace = {
-    verify: (transform) => regex().test(transform),
+    verify: transform => regex().test(transform),
     transform: (transform, source) => {
         const replace = regex().exec(transform);
         if (replace && replace.groups) {
@@ -20148,7 +20148,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Snake = void 0;
 const lodash_1 = __nccwpck_require__(250);
 exports.Snake = {
-    verify: (transform) => transform.trim().toLowerCase() === 'snake',
+    verify: transform => transform.trim().toLowerCase() === 'snake',
     transform: (transform, source) => (0, lodash_1.snakeCase)(source)
 };
 
@@ -20163,7 +20163,7 @@ exports.Snake = {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Upper = void 0;
 exports.Upper = {
-    verify: (transform) => transform.trim().toLowerCase() === 'upper',
+    verify: transform => transform.trim().toLowerCase() === 'upper',
     transform: (transform, source) => source.toUpperCase()
 };
 
